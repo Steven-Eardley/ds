@@ -7,7 +7,7 @@ import sys
 # Check arguments and erase old results file
 args = sys.argv
 if (len(args) != 2):
-	print "Invalid number of arguments - usage:\n ds.py inputFile"
+	print "Invalid number of arguments. Usage: ds.py inputFile"
 	sys.exit()
 
 # Dictionary storing all nodes
@@ -37,7 +37,6 @@ class Node:
 			print
 
 	def readMessage(self, (sender, recipient, inTable)):
-				
 		# add message to table info
 		tableModified = False
 		print 'receive {0} {1}'.format(sender, recipient),
@@ -57,17 +56,9 @@ class Node:
 			if new:
 				self.table.append((address, sender, cost + 1))
 				tableModified = True
+		print
 		if tableModified:
-			print
 			self.sendTable()
-		else:
-			print
-
-	def printState(self):
-		print self.name
-		print self.links
-		print self.addresses
-		print self.table
 
 def parseInputFile(filename):
 	f = open(filename, 'r')
@@ -94,3 +85,12 @@ parseInputFile(args[1])
 while len(messages) > 0:
 	currentMessage = (sender, recipient, sentTable) = messages.pop(0)
 	network[recipient].readMessage(currentMessage)
+for node in network.itervalues():
+	print 'table {0}'.format(node.name),
+	for entry in node.table:
+		print '({0}|{1}|{2})'.format(entry[0], entry[1],entry[2]),
+	print
+
+# Question 1:
+
+# Question 2:

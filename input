@@ -1,0 +1,11 @@
+node p1 1
+node p2 2
+node p3 3
+node p4 4 5
+
+link p1 p2
+link p1 p4
+link p2 p3
+link p3 p4
+
+send p1

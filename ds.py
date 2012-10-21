@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # Distributed Systems Coursework 2012
 # Steven Eardley s0934142
 
@@ -79,7 +80,7 @@ def parseInputFile(filename):
 			network[linkInfo[1]].links.append(linkInfo[0])
 		matchCommand = re.match('send ', line)
 		if matchCommand:
-			network[line[matchCommand.end():]].sendTable()
+			network[line[matchCommand.end():].split()[0]].sendTable()
 
 parseInputFile(args[1])
 while len(messages) > 0:

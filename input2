@@ -1,0 +1,18 @@
+node p1 1
+node p2 2 3
+node p3 4
+node p4 5
+node x1 6
+node x2 7 8
+node x3 9
+
+link p1 p2
+link p1 p3
+link p1 p4
+link p2 p4
+link p2 p3
+link p3 x1
+link x1 x2
+link x2 x3
+
+send x3

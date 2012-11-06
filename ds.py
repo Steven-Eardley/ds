@@ -78,19 +78,36 @@ def parseInputFile(filename):
 			network[linkInfo[0]].links.append(linkInfo[1])
 			network[linkInfo[1]].links.append(linkInfo[0])
 		matchCommand = re.match('send ', line)
-		if matchCommand:
+		if matchCommand:					# send the table from the start node
 			network[line[matchCommand.end():]].sendTable()
 
 parseInputFile(args[1])
-while len(messages) > 0:
+while len(messages) > 0:					# Run until nodes are silent
 	currentMessage = (sender, recipient, sentTable) = messages.pop(0)
 	network[recipient].readMessage(currentMessage)
-for node in network.itervalues():
+for node in network.itervalues():			# Print tables for all nodes
 	print 'table {0}'.format(node.name),
 	for entry in node.table:
 		print '({0}|{1}|{2})'.format(entry[0], entry[1],entry[2]),
 	print
 
 # Question 1:
+#		Yes, it is necessary to reply with the table. Consider a chain of nodes:
+# node n1 1
+# node n2 2
+# node n3 3
+
+# link n1 n2
+# link n2 n3
+
+# send n1
+# 
+# 		In this situation, node n1 or n2 will not hear about the existence of
+#		n3 due to it not replying. Without these pending messages, the algorithm
+#		will converge early with an incomplete graph. The addition of replies
+#		ensures the information exchange is always bi-directional.
 
 # Question 2:
+#		There are fewer messages sent, and therefore fewer events so in the
+#		best case (a highly connected graph) a complete and correct map would
+#		be found sooner.

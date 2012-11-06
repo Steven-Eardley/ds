@@ -1,0 +1,8 @@
+node r1 1
+node r2 2
+node r3 3
+
+link r1 r2
+link r2 r3
+
+send r1

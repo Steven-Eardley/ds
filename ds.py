@@ -43,17 +43,17 @@ class Node:
 		print 'receive {0} {1}'.format(sender, recipient),
 		for (address, link, cost) in inTable:
 			print '({0}|{1}|{2})'.format(address, link, cost),
-			new = True
+			new = True							# if the address is new, add it
 			for (myAddress, myLink, myCost) in self.table:
 				if address == myAddress:
-					new = False
+					new = False					# if seen before, update
 					if (cost + 1) < myCost:		# better cost -> update table
 						self.table.remove((myAddress, myLink, myCost))
 						self.table.append((address, sender, cost + 1))
 						tableModified = True
 					elif sender == myLink and not(cost == (myCost - 1)):
 						self.table.remove((myAddress, myLink, myCost))
-						new = True
+						new = True				# a better route: change route
 			if new:
 				self.table.append((address, sender, cost + 1))
 				tableModified = True
@@ -61,6 +61,7 @@ class Node:
 		if tableModified:
 			self.sendTable()
 
+# Read the file to create the network. Requires a well-formed file
 def parseInputFile(filename):
 	f = open(filename, 'r')
 	try:
@@ -70,11 +71,11 @@ def parseInputFile(filename):
 	
 	for line in rawData:
 		matchNode = re.match('node ', line)
-		if matchNode:
+		if matchNode:						# create a new node
 			nodeInfo = line[matchNode.end():].split()
 			network[nodeInfo[0]] = Node(nodeInfo[0], nodeInfo[1:])
 		matchLink = re.match('link ', line)
-		if matchLink:
+		if matchLink:						# create a new link
 			linkInfo = line[matchLink.end():].split()
 			network[linkInfo[0]].links.append(linkInfo[1])
 			network[linkInfo[1]].links.append(linkInfo[0])

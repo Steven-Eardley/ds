@@ -110,5 +110,16 @@ for node in network.itervalues():			# Print tables for all nodes
 
 # Question 2:
 #		There are fewer messages sent, and therefore fewer events so in the
-#		best case (a highly connected graph) a complete and correct map would
-#		be found sooner.
+#		best case (a cyclic or highly connected graph) a complete and correct
+#		map would be found sooner. Therefore, network topology does have an
+#		effect on the requirement for reply messages. For the correctness of
+#		the algorithm in all topologies however, the reply messages are
+#		required. Of note is that different results are found depending on
+#		which node initiates sending of tables - if n2 in the example above
+#		were to send its table first, the complete graph would be found in ##
+#		events, rather than 16 with the standard algorithm.
+
+#		The aforementioned issue is irrelevent when nodes periodically resend
+#		their tables since, for example, n2 would hear from n3 in time even
+#		if not immediately, and the graph would be completed on the next
+#		iteration.

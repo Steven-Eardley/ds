@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # Distributed Systems Coursework 2012
 # Steven Eardley s0934142
 

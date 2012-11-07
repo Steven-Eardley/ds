@@ -115,10 +115,15 @@ for node in network.itervalues():			# Print tables for all nodes
 #		map would be found sooner. Therefore, network topology does have an
 #		effect on the requirement for reply messages. For the correctness of
 #		the algorithm in all topologies however, the reply messages are
-#		required. Of note is that different results are found depending on
+#		required. 
+
+#		Of note is that different results are found depending on
 #		which node initiates sending of tables - if n2 in the example above
-#		were to send its table first, the complete graph would be found in ##
-#		events, rather than 16 with the standard algorithm.
+#		were to send its table first, the complete graph would be found in 20
+#		events, rather than 16 when starting from n1 with the standard
+#		algorithm. Without replies the complete graph can never be found in
+#		any case since the only channel for the information is back to the
+#		sender.
 
 #		The aforementioned issue is irrelevent when nodes periodically resend
 #		their tables since, for example, n2 would hear from n3 in time even

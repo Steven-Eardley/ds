@@ -2,6 +2,9 @@
 # Distributed Systems Coursework 2012
 # Steven Eardley s0934142
 
+# To run: python ds.py inputFile
+# Where inputFile is a well-formed topology file
+
 import re
 import sys
 

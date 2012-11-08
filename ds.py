@@ -95,6 +95,7 @@ for node in network.itervalues():			# Print tables for all nodes
 
 # Question 1:
 #		Yes, it is necessary to reply with the table. Consider a chain of nodes:
+
 # node n1 1
 # node n2 2
 # node n3 3
@@ -103,11 +104,13 @@ for node in network.itervalues():			# Print tables for all nodes
 # link n2 n3
 
 # send n1
-# 
-# 		In this situation, node n1 or n2 will not hear about the existence of
-#		n3 due to it not replying. Without these pending messages, the algorithm
-#		will converge early with an incomplete graph. The addition of replies
-#		ensures the information exchange is always bi-directional.
+
+# 		In this situation, node n1 or n2 will not gain complete knowledge of the
+#       network. Without pending reply messages the algorithm will converge
+#       early with an incomplete graph. Node n3 will gain complete knowledge as
+#       it is hears the update from n2, but n2 will be missing information for
+#       n3, and n1 will not hear about either n3 or n2. The addition of replies
+#       ensures the information exchange is always bi-directional.
 
 # Question 2:
 #		There are fewer messages sent, and therefore fewer events so in the
